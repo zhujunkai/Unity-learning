@@ -289,7 +289,9 @@
     <Compile Include="Assets\Scripts\GoPatrolAction.cs" />
     <Compile Include="Assets\Scripts\MCollider.cs" />
     <Compile Include="Assets\Scripts\MonsterData.cs" />
+    <Compile Include="Assets\Scripts\myFactory.cs" />
     <Compile Include="Assets\Scripts\PatrolFollowAction.cs" />
+    <Compile Include="Assets\Scripts\ScoreRecorder.cs" />
     <Compile Include="Assets\Scripts\SenceController.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
     <Compile Include="Assets\Scripts\SSAction.cs" />

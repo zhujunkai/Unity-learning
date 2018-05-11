@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SenceController : MonoBehaviour, ISceneController, IUserAction
 {
@@ -10,9 +11,11 @@ public class SenceController : MonoBehaviour, ISceneController, IUserAction
 	int[] m_positionx = { 5, -5 };
 	int[] m_positionz = { 5, -5 };
 	GameObject[] m_collider = new GameObject[4];
-	GameObject[] Monster = new GameObject[4];
+	List<GameObject> Monster = new List<GameObject>();
 	public CCActionManager action_manager;
 	public int wall_sign;
+	public myFactory my_factory;
+	public ScoreRecorder recorder;
 
 	// Use this for initialization
 	void Start () {
@@ -22,6 +25,7 @@ public class SenceController : MonoBehaviour, ISceneController, IUserAction
 		ssDirector.currentScenceController.LoadResources();
 		game_over = false;
 		wall_sign = 0;
+		recorder = new ScoreRecorder();
 	}
 	
 	// Update is called once per frame
@@ -31,26 +35,9 @@ public class SenceController : MonoBehaviour, ISceneController, IUserAction
 	public void LoadResources()
 	{
 		hero = Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/hero"));
-		for(int i = 0; i < m_positionx.Length; i++)
-		{
-			for(int j=0; j < m_positionz.Length; j++)
-			{
-				Monster[i + j * 2]= Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/Monster"));
-				Monster[i + j * 2].transform.position = new Vector3(m_positionx[i],0.1f,m_positionz[j]);
-				m_collider[i + j * 2] = Instantiate<GameObject>(Resources.Load<GameObject>("prefabs/m_collider"));
-				m_collider[i + j * 2].transform.position = new Vector3(m_positionx[i], 0f, m_positionz[j]);
-				#region Data
-				Monster[i + j * 2].AddComponent<MonsterData>();
-				Monster[i + j * 2].GetComponent<MonsterData>().sign = i+j * 2;
-				Monster[i + j * 2].GetComponent<MonsterData>().wall_sign = i+j*2;
-				Monster[i + j * 2].GetComponent<MonsterData>().player = hero;
-				Monster[i + j * 2].GetComponent<MonsterData>().start_position = new Vector3(m_positionx[i], 0f, m_positionz[j]);
-				m_collider[i + j * 2].AddComponent<MCollider>();
-				m_collider[i + j * 2].GetComponent<MCollider>().sign = i + j * 2;
-				#endregion
-			}
-		}
-		for (int i = 0; i < Monster.Length; i++)
+		my_factory = new myFactory();
+		Monster = my_factory.GetMonster();
+		for (int i = 0; i < Monster.Count; i++)
 		{
 			action_manager.GoPatrol(Monster[i]);
 		}
@@ -90,24 +77,41 @@ public class SenceController : MonoBehaviour, ISceneController, IUserAction
 	}
 	void OnEnable()
 	{
-		//GameEventManager.ScoreChange += AddScore;
+		GameEventManager.ScoreChange += AddScore;
 		GameEventManager.GameoverChange += Gameover;
 		//GameEventManager.CrystalChange += ReduceCrystalNumber;
 	}
 	void OnDisable()
 	{
-		//GameEventManager.ScoreChange -= AddScore;
+		GameEventManager.ScoreChange -= AddScore;
 		GameEventManager.GameoverChange -= Gameover;
 		//GameEventManager.CrystalChange -= ReduceCrystalNumber;
 	}
-	void Gameover()
+	public void Gameover()
 	{
 		game_over = true;
-		for(int i = 0; i < Monster.Length; i++)
+		for(int i = 0; i < Monster.Count; i++)
 		{
 			Monster[i].GetComponent<Animator>().SetBool("isrun", false);
 			Monster[i].GetComponent<Animator>().SetBool("iswalk", false);
 		}
 		action_manager.DestroyAllAction();
 	}
+	public bool GetGameover()
+	{
+		return game_over;
+	}
+	public void AddScore()
+	{
+		recorder.AddScore();
+	}
+	public int GetScore()
+	{
+		return recorder.GetScore();
+	}
+	public void Restart()
+	{
+		SceneManager.LoadScene("Resources/Scenes/mySence");
+	}
+
 }
