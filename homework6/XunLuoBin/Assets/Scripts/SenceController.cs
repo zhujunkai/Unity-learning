@@ -16,6 +16,7 @@ public class SenceController : MonoBehaviour, ISceneController, IUserAction
 	public int wall_sign;
 	public myFactory my_factory;
 	public ScoreRecorder recorder;
+	public GameEventManager my_eventmanager;
 
 	// Use this for initialization
 	void Start () {
@@ -26,6 +27,7 @@ public class SenceController : MonoBehaviour, ISceneController, IUserAction
 		game_over = false;
 		wall_sign = 0;
 		recorder = new ScoreRecorder();
+		my_eventmanager = new GameEventManager();
 	}
 	
 	// Update is called once per frame
@@ -79,13 +81,11 @@ public class SenceController : MonoBehaviour, ISceneController, IUserAction
 	{
 		GameEventManager.ScoreChange += AddScore;
 		GameEventManager.GameoverChange += Gameover;
-		//GameEventManager.CrystalChange += ReduceCrystalNumber;
 	}
 	void OnDisable()
 	{
 		GameEventManager.ScoreChange -= AddScore;
 		GameEventManager.GameoverChange -= Gameover;
-		//GameEventManager.CrystalChange -= ReduceCrystalNumber;
 	}
 	public void Gameover()
 	{
@@ -96,6 +96,8 @@ public class SenceController : MonoBehaviour, ISceneController, IUserAction
 			Monster[i].GetComponent<Animator>().SetBool("iswalk", false);
 		}
 		action_manager.DestroyAllAction();
+		hero.GetComponent<Animator>().SetBool("IsRun", false);
+		hero.GetComponent<Animator>().SetBool("IsDead", true);
 	}
 	public bool GetGameover()
 	{

@@ -8,12 +8,13 @@ public class CCActionManager : SSActionManager, ISSActionCallback
 	int count = 0;
 	private GoPatrolAction go_patrol;                            //巡逻兵巡逻
 	private PatrolFollowAction follow_patrol;
+	GameEventManager my_eventmanager;
 
 	// Use this for initialization  
 	protected void Start()
 	{
 		sceneController = (SenceController)SSDirector.getInstance().currentScenceController;
-		
+		my_eventmanager = sceneController.my_eventmanager;
 	}
 
 	// Update is called once per frame  
@@ -36,7 +37,7 @@ public class CCActionManager : SSActionManager, ISSActionCallback
 			GoPatrolAction move = GoPatrolAction.GetSSAction();
 			this.RunAction(objectParam, move, this);
 			//玩家逃脱
-			Singleton<GameEventManager>.Instance.PlayerEscape();
+			my_eventmanager.PlayerEscape();
 		}
 	}
 

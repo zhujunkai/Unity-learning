@@ -10,9 +10,6 @@ public class GameEventManager : MonoBehaviour
     //游戏结束变化
     public delegate void GameoverEvent();
     public static event GameoverEvent GameoverChange;
-    //水晶数量变化
-    public delegate void CrystalEvent();
-    public static event CrystalEvent CrystalChange;
 
     //玩家逃脱
     public void PlayerEscape()
@@ -28,14 +25,6 @@ public class GameEventManager : MonoBehaviour
         if (GameoverChange != null)
         {
             GameoverChange();
-        }
-    }
-    //减少水晶数量
-    public void ReduceCrystalNum()
-    {
-        if (CrystalChange != null)
-        {
-            CrystalChange();
         }
     }
 }

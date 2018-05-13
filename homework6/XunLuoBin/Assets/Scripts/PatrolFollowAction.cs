@@ -33,7 +33,6 @@ public class PatrolFollowAction : SSAction
         //如果侦察兵没有跟随对象，或者需要跟随的玩家不在侦查兵的区域内
         if ( data.wall_sign != my_scene.wall_sign)
         {
-			my_scene.AddScore();
             this.destroy = true;
             this.callback.SSActionEvent(this,1,this.gameobject);
         }

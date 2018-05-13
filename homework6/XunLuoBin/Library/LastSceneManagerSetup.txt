@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/SD_Character/SampleScene.unity
+- path: Assets/Resources/Scenes/mySence.unity
   isLoaded: 1
   isActive: 1
