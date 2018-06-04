@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthBar.Plugins", "HealthBar.Plugins.csproj", "{B152E7D9-1226-E1E1-F1C7-305717BA9482}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthBar", "HealthBar.csproj", "{FD75ABAA-BA49-BB0B-4695-CA0E51909A0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthBar.Editor.Plugins", "HealthBar.Editor.Plugins.csproj", "{05776861-D7E7-4C81-76D9-E31412A43486}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B152E7D9-1226-E1E1-F1C7-305717BA9482}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B152E7D9-1226-E1E1-F1C7-305717BA9482}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B152E7D9-1226-E1E1-F1C7-305717BA9482}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B152E7D9-1226-E1E1-F1C7-305717BA9482}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD75ABAA-BA49-BB0B-4695-CA0E51909A0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD75ABAA-BA49-BB0B-4695-CA0E51909A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD75ABAA-BA49-BB0B-4695-CA0E51909A0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD75ABAA-BA49-BB0B-4695-CA0E51909A0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05776861-D7E7-4C81-76D9-E31412A43486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05776861-D7E7-4C81-76D9-E31412A43486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05776861-D7E7-4C81-76D9-E31412A43486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05776861-D7E7-4C81-76D9-E31412A43486}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
